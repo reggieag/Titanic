@@ -1,10 +1,9 @@
-#Kaggle: Titanic - Random Forest
-#This code drops embarked and parch. Testing to see if imporves Random Forest method.
+#Logistic Regression Implementation
 
 import csv
 import pandas as pd
 import numpy as np
-from sklearn.ensemble import RandomForestClassifier
+from sklearn.linear_model import LogisticRegression
 
 
 train_data = pd.read_csv('train.csv')
@@ -24,8 +23,8 @@ def clean_data(Data_Frame):
 train_data = clean_data(train_data)
 test_data = clean_data(test_data)
 
-Forest = RandomForestClassifier(n_estimators = 100)
-Forest = Forest.fit(train_data.ix[:,"pclass":],train_data.ix[:,"survived"])
+Log_Reg = LogisticRegression()
+Log_Reg = Log_Reg.fit(train_data.ix[:,"pclass":],train_data.ix[:,"survived"])
 
-Output = Forest.predict(test_data)
+Output = Log_Reg.predict(test_data)
 np.savetxt(outputCSV,Output)
